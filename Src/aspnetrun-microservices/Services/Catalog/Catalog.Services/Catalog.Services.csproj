@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Catalog.Repositories\Catalog.Repositories.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Products\" />
+    <None Remove="Products\Commands\" />
+    <None Remove="Products\Queries\" />
+    <None Remove="Products\Commands\Create\" />
+    <None Remove="Products\Commands\Update\" />
+    <None Remove="Products\Commands\Delete\" />
+    <None Remove="Products\Queries\GetAll\" />
+    <None Remove="Products\Queries\GetById\" />
+    <None Remove="Products\Queries\GetByName\" />
+    <None Remove="Products\Queries\GetByCategoryId\" />
+    <None Remove="MediatR" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Products\" />
+    <Folder Include="Products\Commands\" />
+    <Folder Include="Products\Queries\" />
+    <Folder Include="Products\Commands\Create\" />
+    <Folder Include="Products\Commands\Update\" />
+    <Folder Include="Products\Commands\Delete\" />
+    <Folder Include="Products\Queries\GetAll\" />
+    <Folder Include="Products\Queries\GetById\" />
+    <Folder Include="Products\Queries\GetByName\" />
+    <Folder Include="Products\Queries\GetByCategoryName\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+  </ItemGroup>
+</Project>
