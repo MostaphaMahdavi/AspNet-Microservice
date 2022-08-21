@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Frameworks\aspnetrun-microservice.Frameworks\aspnetrun-microservice.Frameworks.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Baskets\" />
+    <None Remove="Baskets\Entities\" />
+    <None Remove="Baskets\Repositories\" />
+    <None Remove="Baskets\Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Baskets\" />
+    <Folder Include="Baskets\Entities\" />
+    <Folder Include="Baskets\Repositories\" />
+    <Folder Include="Baskets\Services\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  catalogdb:
+    container_name: catalogdb
+    restart: always
+    ports:
+      - 8518:27017
+    volumes:
+      - mongo_data:/data/db
+  basketdb:
+    container_name: redisbasketdb
+    ports:
+      - 8517:6379
+    volumes:
+      - redis_config:/opt/bitnami/redis/mounted-etc/redis.conf  
+      - redis_data:/bitnami/redis/data      
+  catalog.api:
+    container_name: catalog.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionStrings=mongodb://catalogdb"
+    depends_on:
+      - catalogdb
+    ports:
+      - "7900:80"
+  basket.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings:RedisConnection=redisbasketdb"
+    depends_on:
+      - basketdb  
+    ports:
+      - "7901:80"
+

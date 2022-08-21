@@ -1,4 +1,4 @@
-﻿using Catalog.Api.Extensions;
+﻿using Basket.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,19 +7,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddServiceRegistry();
-builder.Services.AddMediatRRegistry();
-
 builder.Services.AddSwaggerGen();
+builder.Services.AddRedis(builder.Configuration);
+builder.Services.AddServiceRegistry();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
-app.UseSwagger();
-app.UseSwaggerUI();
+
 app.UseAuthorization();
 
 app.MapControllers();

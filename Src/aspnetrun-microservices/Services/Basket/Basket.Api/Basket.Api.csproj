@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>disable</Nullable>
+    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <_EnableMacOSCodeSign>false</_EnableMacOSCodeSign>
     <DockerComposeProjectPath>../../../docker-compose.dcproj</DockerComposeProjectPath>
@@ -14,15 +14,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Catalog.Services\Catalog.Services.csproj">
+    <ProjectReference Include="..\Basket.Services\Basket.Services.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Extensions\" />
+    <None Remove="Controllers\" />
     <None Remove="MediatR.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Extensions\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controllers\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
 </Project>
