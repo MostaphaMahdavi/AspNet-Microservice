@@ -12,7 +12,7 @@ namespace Basket.Repositories.Baskets.Impliments
 
         public BasketRepository(IDistributedCache cache)
         {
-            _cache = cache?? throw new ArgumentException(nameof(cache));
+            _cache = cache?? throw new ArgumentException($"خطااااااااااااااااا {nameof(cache)}");
         }
 
         public async Task<ShoppingCart> GetBasket(string userName)

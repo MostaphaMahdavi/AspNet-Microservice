@@ -9,12 +9,42 @@ services:
     volumes:
       - mongo_data:/data/db
   basketdb:
-    container_name: redisbasketdb
+    container_name: basketdb
+    restart: always  
     ports:
-      - 8517:6379
+      - 6379:6379
     volumes:
       - redis_config:/opt/bitnami/redis/mounted-etc/redis.conf  
-      - redis_data:/bitnami/redis/data      
+      - redis_data:/bitnami/redis/data     
+  portainer:
+    container_name: portainer
+    ports:
+      - 8080:7900
+      - 9000:9000
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock  
+  discountdb:
+    container_name: discountdb
+    restart: always
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_Db=DiscountDb
+    ports:
+      - "5432:5432"
+    volumes:
+      -  postgres_data:/var/lib/postgresql/data/  
+  pgadmin:
+    container_name: pgadmin
+    restart: always
+    ports:
+      - 9001:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=mostapha.mahdavi@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=admin1234            
+    volumes:
+      - pgadmin_data:/root/.pgadmin         
   catalog.api:
     container_name: catalog.api
     environment:
@@ -27,9 +57,16 @@ services:
   basket.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "CacheSettings:RedisConnection=redisbasketdb"
+      - "CacheSettings:RedisConnection=basketdb:6379"
     depends_on:
       - basketdb  
     ports:
       - "7901:80"
+
+
+  discount.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
 
