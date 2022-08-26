@@ -9,4 +9,16 @@
   <ItemGroup>
     <ProjectReference Include="..\Discount.DataAccessLayers\Discount.DataAccessLayers.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Discounts\" />
+    <None Remove="Discounts\Impliments\" />
+    <None Remove="Npgsql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Discounts\" />
+    <Folder Include="Discounts\Impliments\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="6.0.6" />
+  </ItemGroup>
 </Project>

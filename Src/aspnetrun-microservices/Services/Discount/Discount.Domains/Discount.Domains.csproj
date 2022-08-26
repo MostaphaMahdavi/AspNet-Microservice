@@ -13,10 +13,12 @@
     <None Remove="Discounts\" />
     <None Remove="Discounts\Entities\" />
     <None Remove="Discounts\Repositories\" />
+    <None Remove="Discounts\Dtos\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Discounts\" />
     <Folder Include="Discounts\Entities\" />
     <Folder Include="Discounts\Repositories\" />
+    <Folder Include="Discounts\Dtos\" />
   </ItemGroup>
 </Project>

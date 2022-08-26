@@ -32,9 +32,19 @@ services:
       - POSTGRES_PASSWORD=admin1234
       - POSTGRES_Db=DiscountDb
     ports:
-      - "5432:5432"
+      - "8519:5432"
     volumes:
       -  postgres_data:/var/lib/postgresql/data/  
+  orderdb:
+    container_name: orderdb
+    restart: always
+    ports:
+      - 1999:1433
+    environment:
+      - SA_PASSWORD=1234@Abcd
+      - ACCEPT_EULA="Y"    
+    volumes:
+      - sqlserver_data:/var/opt/mssql   
   pgadmin:
     container_name: pgadmin
     restart: always
@@ -44,7 +54,13 @@ services:
       - PGADMIN_DEFAULT_EMAIL=mostapha.mahdavi@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=admin1234            
     volumes:
-      - pgadmin_data:/root/.pgadmin         
+      - pgadmin_data:/root/.pgadmin  
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"           
   catalog.api:
     container_name: catalog.api
     environment:
@@ -58,15 +74,34 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:RedisConnection=basketdb:6379"
+      - "GrpcSettings:DiscountUrl=discount.grpc"
     depends_on:
       - basketdb  
     ports:
       - "7901:80"
-
-
   discount.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:DiscountContext=Server=172.28.0.1;Port=8519;Database=DiscountDb;User Id=admin;Password=admin1234"
+    depends_on:
+      - discountdb
     ports:
-      - "80"
+      - "7902:80"
+  discount.grpc:
+    container_name: discount.grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:DiscountContext=Server=172.28.0.1;Port=8519;Database=DiscountDb;User Id=admin;Password=admin1234"
+    depends_on:
+      - discountdb
+    ports:
+      - "7903:80"
+  order.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:OrderConnection=Data Source=orderdb;Initial Catalog=OrderDb;Uid=sa;Pwd=1234@Abcd"
+    depends_on:
+      - orderdb   
+    ports:
+      - "7904:80"
 

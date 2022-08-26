@@ -10,11 +10,28 @@
   <ItemGroup>
     <None Remove="Entities\" />
     <None Remove="MongoDB.Driver" />
+    <None Remove="ValueObjects\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Entities\Email\" />
+    <None Remove="Implimentations\" />
+    <None Remove="SendGrid" />
+    <None Remove="Microsoft.Extensions.Options" />
+    <None Remove="Microsoft.Extensions.Logging" />
+    <None Remove="Common\" />
+    <None Remove="Microsoft.AspNetCore.Mvc" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
+    <Folder Include="ValueObjects\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Implimentations\" />
+    <Folder Include="Common\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
+    <PackageReference Include="SendGrid" Version="9.28.1" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
   </ItemGroup>
 </Project>

@@ -7,7 +7,9 @@ services:
   portainer:
     image: portainer/portainer-ce
   discountdb:
-    image: postgres  
+    image: postgres
+  orderdb:
+    image: mcr.microsoft.com/mssql/server:2019-latest    
   pgadmin:
     image: dpage/pgadmin4  
   catalog.api:
@@ -20,13 +22,23 @@ services:
     build:
       context: .
       dockerfile: Services/Basket/Basket.Api/Dockerfile
-
   discount.api:
     image: ${DOCKER_REGISTRY-}discount
     build:
       context: .
       dockerfile: Services/Discount/Discount.Api/Dockerfile
-
+  discount.grpc:
+    image: ${DOCKER_REGISTRY-}discount
+    build:
+      context: .
+      dockerfile: Services/Discount/Discount.Grpc/Dockerfile
+  order.api:
+    image: ${DOCKER_REGISTRY-}order
+    build:
+      context: .
+      dockerfile: Services/Order/Order.Api/Dockerfile
+  rabbitmq:
+    image: rabbitmq:3-management-alpine    
 volumes:
   mongo_data:
   redis_data:
@@ -34,5 +46,8 @@ volumes:
   portainer_data:
   postgres_data:
   pgadmin_data:
+  sqlserver_data:
+
+
 
 

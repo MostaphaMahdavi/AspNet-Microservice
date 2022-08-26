@@ -9,4 +9,36 @@
   <ItemGroup>
     <ProjectReference Include="..\Discount.Repositories\Discount.Repositories.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Discounts\" />
+    <None Remove="Discounts\Commands\" />
+    <None Remove="Discounts\Queris\" />
+    <None Remove="Discounts\Commands\Create\" />
+    <None Remove="Discounts\Commands\Update\" />
+    <None Remove="Discounts\Commands\Delete\" />
+    <None Remove="Discounts\Queris\GetAll\" />
+    <None Remove="Discounts\Queris\GetById\" />
+    <None Remove="MediatR" />
+    <None Remove="AutoMapper" />
+    <None Remove="Discounts\Queris\GetDiscountByProductNameQuery\" />
+    <None Remove="Discounts\Mapping\" />
+    <None Remove="Discounts\Commands\DeleteByProductName\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Discounts\" />
+    <Folder Include="Discounts\Commands\" />
+    <Folder Include="Discounts\Queris\" />
+    <Folder Include="Discounts\Commands\Create\" />
+    <Folder Include="Discounts\Commands\Update\" />
+    <Folder Include="Discounts\Commands\Delete\" />
+    <Folder Include="Discounts\Queris\GetAll\" />
+    <Folder Include="Discounts\Queris\GetById\" />
+    <Folder Include="Discounts\Queris\GettByProductNameDiscounQuery\" />
+    <Folder Include="Discounts\Mapping\" />
+    <Folder Include="Discounts\Commands\DeleteDiscountByProductName\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+  </ItemGroup>
 </Project>

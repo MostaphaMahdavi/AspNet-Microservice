@@ -9,4 +9,29 @@
   <ItemGroup>
     <ProjectReference Include="..\Discount.Domains\Discount.Domains.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Dapper" />
+    <None Remove="Context\" />
+    <None Remove="Npgsql" />
+    <None Remove="Microsoft.EntityFrameworkCore" />
+    <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <None Remove="Microsoft.EntityFrameworkCore.Design" />
+    <None Remove="Discounts\" />
+    <None Remove="Discounts\Coupons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="Npgsql" Version="6.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.8">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Context\" />
+    <Folder Include="Discounts\" />
+    <Folder Include="Discounts\Coupons\" />
+  </ItemGroup>
 </Project>

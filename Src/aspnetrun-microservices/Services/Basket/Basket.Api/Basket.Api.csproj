@@ -11,6 +11,7 @@
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.23.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,9 +23,17 @@
     <None Remove="Controllers\" />
     <None Remove="MediatR.Extensions.Microsoft.DependencyInjection" />
     <None Remove="Extensions\" />
+    <None Remove="Grpc.AspNetCore" />
+    <None Remove="GrpcService\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Extensions\" />
+    <Folder Include="GrpcService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="..\..\Discount\Discount.Grpc\Protos\greet.proto" GrpcServices="Client">
+      <Link>Protos\greet.proto</Link>
+    </Protobuf>
   </ItemGroup>
 </Project>

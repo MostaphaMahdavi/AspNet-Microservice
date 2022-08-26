@@ -1,8 +1,10 @@
 ﻿using System;
+using Basket.Api.GrpcService;
 using Basket.Domain.Baskets.Repositories;
 using Basket.Domain.Baskets.Services;
 using Basket.Repositories.Baskets.Impliments;
 using Basket.Services.Baskets.Impliments;
+using Discount.Grpc;
 
 namespace Basket.Api.Extensions
 {
@@ -12,6 +14,8 @@ namespace Basket.Api.Extensions
         {
             services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped<IBasketService, BasketService>();
+
+           
         }
 
 
@@ -21,6 +25,16 @@ namespace Basket.Api.Extensions
             {
                 option.Configuration = configuration["CacheSettings:RedisConnection"];
             });
+        }
+
+
+        public static void AddGrpcExt(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(o => o.Address = new Uri(
+               configuration["GrpcSettings:DiscountUrl"]
+                ));
+
+            services.AddScoped<DiscountGrpcService>();
         }
   
     }

@@ -9,15 +9,14 @@ using Catalog.Services.Products.Queries.GetByCategoryId;
 using Catalog.Services.Products.Commands.Create;
 using Catalog.Services.Products.Commands.Update;
 using Catalog.Services.Products.Commands.Delete;
+using aspnetrun_microservice.Frameworks.Common;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Catalog.Api.Controllers
 {
 
-    [ApiController]
-    [Route("api/v1/[controller]")]
-    public class CatalogController : ControllerBase
+    public class CatalogController : BaseController
     {
        private readonly IMediator _mediator;
 
