@@ -30,15 +30,6 @@ namespace Order.Services.Orders.Commands.Create
             var orderData = _mapper.Map<Domains.Orders.Entities.Order>(request);
             var newOrder= await _command.CreateOrder(orderData);
 
-          /*
-           * await _emailService.SendEmail(new Email
-            {
-               To=request.EmailAddress,
-               Body="Order was created",
-               Subject="Create order"
-            });
-          */
-
             return _mapper.Map<OrderInfo>(newOrder);
         }
     }

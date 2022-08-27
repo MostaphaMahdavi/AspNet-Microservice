@@ -12,8 +12,8 @@ using Order.DataAccessLayers.Context;
 namespace Order.DataAccessLayers.Migrations
 {
     [DbContext(typeof(OrderContext))]
-    [Migration("20220826123041_initt")]
-    partial class initt
+    [Migration("20220827175124_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

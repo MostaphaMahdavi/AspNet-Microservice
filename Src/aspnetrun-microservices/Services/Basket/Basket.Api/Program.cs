@@ -1,4 +1,5 @@
 ﻿using Basket.Api.Extensions;
+using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRedis(builder.Configuration);
 builder.Services.AddServiceRegistry();
-builder.Services.AddGrpcExt(builder.Configuration);
+//builder.Services.AddGrpcExt(builder.Configuration);
+builder.Services.AddMessagingConfiguration(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

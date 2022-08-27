@@ -8,17 +8,22 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Basket.Repositories\Basket.Repositories.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Eventbus.Messages\Eventbus.Messages.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="MediatR" />
     <None Remove="Baskets\" />
     <None Remove="Baskets\Impliments\" />
+    <None Remove="Baskets\Mappings\" />
+    <None Remove="AutoMapper" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Baskets\" />
     <Folder Include="Baskets\Impliments\" />
+    <Folder Include="Baskets\Mappings\" />
   </ItemGroup>
 </Project>

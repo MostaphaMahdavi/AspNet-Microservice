@@ -12,6 +12,10 @@ using System.Reflection;
 using Order.Services.Behaviours;
 using aspnetrun_microservice.Frameworks.Implimentations;
 using aspnetrun_microservice.Frameworks.Interfaces;
+using MassTransit;
+using Eventbus.Messages.Events;
+using Eventbus.Messages.Common;
+using Order.Services.EventBusConsumers;
 
 namespace Order.Api.Extensions
 {
@@ -21,6 +25,7 @@ namespace Order.Api.Extensions
         {
             services.AddScoped<IOrderQueryRepository, OrderQueryRepository>();
             services.AddScoped<IOrderCommandRepository, OrderCommandRepository>();
+            services.AddScoped<BasketCheckoutEvent>();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
@@ -43,7 +48,25 @@ namespace Order.Api.Extensions
             });
         }
 
-    
+        public static void AddMessagingConfiguration(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddMassTransit(
+     config =>
+     {
+         config.AddConsumer<BasketCheckoutConsumer>();
+         config.UsingRabbitMq((ctx, cfg) =>
+         {
+             cfg.Host(configuration["EventBusSettings:HostAddress"]);
+             cfg.ReceiveEndpoint(EventBusConstants.BasketCheckoutQueue, c =>
+             {
+                 c.ConfigureConsumer<BasketCheckoutConsumer>(ctx);
+             });
+         }
+         );
+     });
+        }
+
+
     }
 }
 

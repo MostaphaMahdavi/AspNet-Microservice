@@ -14,11 +14,13 @@
     <None Remove="Baskets\Entities\" />
     <None Remove="Baskets\Repositories\" />
     <None Remove="Baskets\Services\" />
+    <None Remove="Baskets\Dtos\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Baskets\" />
     <Folder Include="Baskets\Entities\" />
     <Folder Include="Baskets\Repositories\" />
     <Folder Include="Baskets\Services\" />
+    <Folder Include="Baskets\Dtos\" />
   </ItemGroup>
 </Project>

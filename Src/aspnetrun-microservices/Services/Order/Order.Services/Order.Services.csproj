@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Order.Repositories\Order.Repositories.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Eventbus.Messages\Eventbus.Messages.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="MediatR" />
@@ -25,11 +26,14 @@
     <None Remove="FluentValidation" />
     <None Remove="Exceptions\" />
     <None Remove="Behaviours\" />
+    <None Remove="EventBusConsumers\" />
+    <None Remove="MassTransit" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="FluentValidation" Version="11.2.0" />
+    <PackageReference Include="MassTransit" Version="8.0.6" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Orders\" />
@@ -45,5 +49,6 @@
     <Folder Include="Orders\Queries\GetById\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Behaviours\" />
+    <Folder Include="EventBusConsumers\" />
   </ItemGroup>
 </Project>

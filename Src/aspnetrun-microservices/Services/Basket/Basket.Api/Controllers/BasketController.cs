@@ -7,20 +7,29 @@ using MediatR;
 using Basket.Domain.Baskets.Services;
 using Basket.Domain.Baskets.Entities;
 using Basket.Api.GrpcService;
+using Basket.Domain.Baskets.Dtos;
+using aspnetrun_microservice.Frameworks.Common;
+using Eventbus.Messages.Events;
+using AutoMapper;
+using MassTransit;
+using Newtonsoft.Json;
 
 namespace Basket.Api.Controllers
 {
 
-    [ApiController]
-    [Route("api/v1/[controller]")]
-    public class BasketController : ControllerBase
+    public class BasketController : BaseController
     {
-        private readonly DiscountGrpcService _discountGrpcService;
+       // private readonly DiscountGrpcService _discountGrpcService;
         private readonly IBasketService _basket;
-        public BasketController(IBasketService basket, DiscountGrpcService discountGrpcService )
+        private readonly IMapper _mapper;
+        private readonly IPublishEndpoint _publish;
+
+        public BasketController(IBasketService basket,
+            IMapper mapper, IPublishEndpoint publish)
         {
             _basket = basket;
-            _discountGrpcService = discountGrpcService;
+            _mapper = mapper;
+            _publish = publish;
         }
 
 
@@ -36,13 +45,7 @@ namespace Basket.Api.Controllers
         [HttpPut("[action]")]
         public async Task<IActionResult> InsertBasket (ShoppingCart shoppingCart)
         {
-            /*
-            foreach (var item in shoppingCart.ShoppingCartItems)
-            {
-              var coupon= await _discountGrpcService.GetDiscount(item.ProductName);
-                item.Price = coupon.Amount;
-            }
-            */
+           
             return Ok(await _basket.UpdateBasketAsync(shoppingCart));
         }
 
@@ -54,6 +57,27 @@ namespace Basket.Api.Controllers
             return Ok();
         }
 
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Checkout(BasketCheckoutInfo request)
+        {
+
+            // get from redis
+            var basket = await _basket.GetBasketAsyn(request.UserName);
+            if (basket is null)
+            {
+                return BadRequest("یافت نشد.");
+            }
+
+
+            var eventMessage = _mapper.Map<BasketCheckoutEvent>(request);
+            eventMessage.TotalPrice = basket.TotalPRice;
+
+            //publish to rabbitmq with MassTransit
+            await _publish.Publish(eventMessage);
+            //delete from redis
+            await _basket.DeleteBasketAsync(request.UserName);
+            return Accepted();
+        }
 
 
     }

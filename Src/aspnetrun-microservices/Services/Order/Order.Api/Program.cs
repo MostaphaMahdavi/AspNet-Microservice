@@ -1,6 +1,7 @@
 ﻿using Order.Api.Extensions;
 using FluentValidation.AspNetCore;
 using Order.Services.Orders.Commands.Create;
+using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddServiceRegistry();
 builder.Services.AddDbContextExt(builder.Configuration);
 builder.Services.AddSwaggerGen();
+builder.Services.AddMessagingConfiguration(builder.Configuration);
+
+
 
 var app = builder.Build();
 

@@ -1,10 +1,12 @@
 ﻿using System;
-using Discount.Grpc;
+//using Discount.Grpc;
 
 namespace Basket.Api.GrpcService
 {
+    /*
     public class DiscountGrpcService
     {
+
         private readonly DiscountProtoService.DiscountProtoServiceClient _discountProtoServiceClient;
 
         public DiscountGrpcService(DiscountProtoService.DiscountProtoServiceClient discountProtoServiceClient)
@@ -18,5 +20,6 @@ namespace Basket.Api.GrpcService
         }
         
     }
+    */
 }
 
