@@ -72,13 +72,13 @@ namespace Catalog.Api.Controllers
             return Ok(await _mediator.Send(insertProductCommand));
         }
 
-        [HttpPost("[action]")]
+        [HttpPut("[action]")]
         public async Task<IActionResult> UpdateProduct(UpdateProductCommand updateProductCommand)
         {
             return Ok(await _mediator.Send(updateProductCommand));
         }
 
-        [HttpPost("[action]")]
+        [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteProduct(DeleteProductCommand deleteProductCommand)
         {
             return Ok(await _mediator.Send(deleteProductCommand));

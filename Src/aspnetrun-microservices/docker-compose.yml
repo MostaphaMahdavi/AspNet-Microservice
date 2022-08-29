@@ -39,6 +39,12 @@ services:
       dockerfile: Services/Order/Order.Api/Dockerfile
   rabbitmq:
     image: rabbitmq:3-management-alpine    
+  ocelotapigw:
+    image: ${DOCKER_REGISTRY-}ocelotapigw
+    build:
+      context: .
+      dockerfile: ApiGetways/OcelotApiGW/Dockerfile
+
 volumes:
   mongo_data:
   redis_data:
@@ -47,6 +53,7 @@ volumes:
   postgres_data:
   pgadmin_data:
   sqlserver_data:
+
 
 
 

@@ -34,21 +34,21 @@ namespace Discount.Api.Controllers
         }
 
 
-        [HttpGet("[action]{id}")]
-        public async Task<IActionResult> GetDiscountById(Guid id)
+        [HttpGet("[action]/{myId}")]
+        public async Task<IActionResult> GetDiscountById(Guid myId)
         {
-            return Ok(await _mediator.Send(new GetByIdDiscountQuery {Id=id }));
+            return Ok(await _mediator.Send(new GetByIdDiscountQuery {Id= myId }));
         }
 
 
-        [HttpGet("[action]/productName")]
+        [HttpGet("[action]/{productName}")]
         public async Task<IActionResult> GetDiscountByProductName(string productName)
         {
             return Ok(await _mediator.Send(new GetByProductNameDiscountQuery { productName=productName}));
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> SaveDiscount(CreateDiscountCommand create)
+        public async Task<IActionResult> InsertDiscount(CreateDiscountCommand create)
         {
             return Ok(await _mediator.Send(create));
         }

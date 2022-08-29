@@ -33,7 +33,7 @@ namespace Basket.Api.Controllers
         }
 
 
-        [HttpGet("[action]")]
+        [HttpGet("[action]/{userName}")]
         public async Task<IActionResult> GetBasket(string userName)
         {
             var basket = await _basket.GetBasketAsyn(userName);
@@ -50,7 +50,7 @@ namespace Basket.Api.Controllers
         }
 
 
-        [HttpDelete("[action]")]
+        [HttpDelete("[action]/{userName}")]
         public async Task<IActionResult> DeleteBasket(string userName)
         {
             await _basket.DeleteBasketAsync(userName);

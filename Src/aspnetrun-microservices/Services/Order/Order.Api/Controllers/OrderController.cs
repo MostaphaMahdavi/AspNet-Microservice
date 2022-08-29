@@ -18,7 +18,7 @@ namespace Order.Api.Controllers
 
         public OrderController(IMediator mediator)
         {
-            _mediator = mediator;
+            _mediator = mediator;         
         }
 
         [HttpGet("[action]")]
@@ -35,12 +35,12 @@ namespace Order.Api.Controllers
             return Ok(orders);
         }
 
-        [HttpGet("[action]/{id}")]
-        public async Task<IActionResult> GetOrderById(Guid id)
+        [HttpGet("[action]/{myId}")]
+        public async Task<IActionResult> GetOrderById(Guid myId)
         {
             var order = await _mediator.Send(new GetByIdOrderQuery
             {
-                Id=id
+                Id= myId
             });
             return Ok(order);
         }
