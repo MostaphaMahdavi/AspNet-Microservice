@@ -45,6 +45,12 @@ services:
       context: .
       dockerfile: ApiGetways/OcelotApiGW/Dockerfile
 
+  shopping.aggregator:
+    image: ${DOCKER_REGISTRY-}shopping
+    build:
+      context: .
+      dockerfile: ApiGetways/Shopping.Aggregator/Dockerfile
+
 volumes:
   mongo_data:
   redis_data:
@@ -53,6 +59,7 @@ volumes:
   postgres_data:
   pgadmin_data:
   sqlserver_data:
+
 
 
 
